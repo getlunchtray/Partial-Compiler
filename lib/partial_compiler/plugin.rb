@@ -1,6 +1,6 @@
 module PartialCompiler 
   TEMPLATE_ENGINE = ActionView::Template::Handlers::ERB
-  ORIGINAL_EXTENSION = "erb"
+  ORIGINAL_EXTENSION = "html.erb"
   RENDERING_ENGINE_PARTIAL_FORMAT = "= render partial:"
 
   class Plugin 
