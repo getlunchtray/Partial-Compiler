@@ -30,9 +30,27 @@ module PartialCompiler
     def read_each_line line, compiled_file_path
       if line.include? RENDERING_ENGINE_PARTIAL_FORMAT 
         file = PartialReader.new(line, compiled_file_path)
-        return file.contents if file.contents
+        if file.contents
+          locals_line = generate_locals(file.locals, line)
+          content_with_locals = [locals_line, file.contents].compact.join("\n")
+          return content_with_locals
+        end
       end
       line
+    end
+
+    def generate_locals locals, original_line
+      if locals
+        condensed_locals = locals.map{|local, value| "#{local}=#{get_local_value(local, original_line)}"}.join(";")
+        return "<% #{condensed_locals} %>"
+      else
+        return nil 
+      end
+    end
+
+    def get_local_value local, original_line
+      find_value_of_local = /#{local}:([^,}]*)/
+      original_line.match(find_value_of_local)[-1]
     end
 
   end

@@ -1,4 +1,5 @@
 module PartialCompiler
+  require 'partial_compiler/railtie' if defined?(Rails)
 end
 
 require "partial_compiler/plugin"
