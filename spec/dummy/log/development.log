@@ -1,0 +1,19 @@
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-21 18:05:08 -0500
+Processing by ItemsController#index as HTML
+  Rendered items/_partial_one.html.erb (0.6ms)
+  Rendered items/index.uc.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 241ms (Views: 240.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/items.self-b60acab5af8d245ed2b3012f77d11d8d207d8eada27756badaf4ef05770d60f6.css?body=1" for 127.0.0.1 at 2017-02-21 18:05:09 -0500
+
+
+Started GET "/assets/application.self-8f06a73c35179188914ab50e057157639fce1401c1cdca640ac9cec33746fc5b.js?body=1" for 127.0.0.1 at 2017-02-21 18:05:09 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2017-02-21 18:05:09 -0500
+
+
+Started GET "/assets/items.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2017-02-21 18:05:09 -0500
