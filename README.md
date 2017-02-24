@@ -58,10 +58,71 @@ Partial Compiler will turn this into:
 </span>
 ```
 
+## Gotchas
+
+#### Locals
+
+For locals, the keys cannot share a name with variables in the template. Let me explain:
+
+Assume you have a template that looks like this:
+
+```
+<% my_awesome_variable = "Welcome" %>
+<div class="container">
+  <h1>
+    <%= render partial: "my_partial", locals: {my_awesome_variable: "Goodbye"} %>
+  </h1>
+  <p><%= my_awesome_variable %></p>
+</div>
+```
+
+The uncompiled version will work exactly as you'd expect. The H1 will print out "Goodbye" and the paragraph will print out "Welcome."
+
+At the moment, when locals are inserted into the compiled template, they're added just above where the partial was rendered:
+
+```
+<% my_awesome_variable = "Welcome" %>
+<div class="container">
+  <h1>
+    <% my_awesome_variable = "Goodbye" %>
+    <div>
+      <%= my_awesome_variable %>
+    </div>
+  </h1>
+  <p><%= my_awesome_variable %></p>
+</div>
+```
+
+So now both you H1 and paragraph will both say "Goodbye"! 
+
+![](readme-files/totally-justified-full-house-meme.jpg)
+
+Long story short, just make sure your variables and locals are different names. Also, please excuse my wacky HTML, I don't actually write like that ;)
+
+#### Line Spacing
+
+Partials must be rendered on their own line.
+
+Instead of this:
+
+```
+<h1><%= render partial: "my_partial" %></h1>
+```
+
+Do this:
+
+```
+<h1>
+  <%= render partial: "my_partial" %>
+</h1>
+```
+
+Indentation, however, will be honoured.
+
 ## Work in Progress
 More things coming...
 
-1. Locals support
+1. Better locals support
 2. Haml support
 3. Slim Support
  
