@@ -15,8 +15,9 @@ module PartialCompiler
 
     def self.find_files_by_extension
       views_directory = Rails.root.join("app", "views")
+      original_extension = PartialCompiler.config[:original_extension]
       Find.find(views_directory).select do |p| 
-        /.*\.uc.#{ORIGINAL_EXTENSION}$|.*\.uncompiled.#{ORIGINAL_EXTENSION}$/ =~ p 
+        /.*\.uc.#{original_extension}$|.*\.uncompiled.#{original_extension}$/ =~ p 
       end
     end
 

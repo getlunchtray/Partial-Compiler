@@ -10,8 +10,7 @@ module PartialCompiler
     #  @contents: The actual guts of the partial which will be placed in the compiled file
 
     def initialize original_string, file_called_from 
-      # ERB currently assumed
-      code_to_eval = original_string.match(/(render .*)%>/)[1]
+      code_to_eval = original_string.match(PartialCompiler.config[:regex_partial_eval_match])[1]
       path_to_partial, partial_name, @locals = execute_safe_ruby(code_to_eval)
       set_path(path_to_partial, partial_name, file_called_from)
       indentation = get_indentation(original_string)
@@ -48,7 +47,6 @@ module PartialCompiler
 
     def set_contents indentation
       if @path 
-        # needs to set locals
         file = File.open(@path, "rb")
         @contents = add_indentation(file.read, indentation)
         file.close

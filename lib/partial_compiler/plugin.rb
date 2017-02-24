@@ -1,16 +1,14 @@
 module PartialCompiler 
-  TEMPLATE_ENGINE = ActionView::Template::Handlers::ERB
-  ORIGINAL_EXTENSION = "html.erb"
-  RENDERING_ENGINE_PARTIAL_FORMAT = "= render partial:"
-
   class Plugin 
+    original_extension = PartialCompiler.config[:original_extension]
+    template_engine = PartialCompiler.config[:template_engine]
     if Rails.env.development?
       ActionView::Template.register_template_handler(
-        "uc.#{ORIGINAL_EXTENSION}".to_sym, "uncompiled.#{ORIGINAL_EXTENSION}".to_sym, 
-        TEMPLATE_ENGINE.send(:new)
+        "uc.#{original_extension}".to_sym, "uncompiled.#{original_extension}".to_sym, 
+        template_engine.send(:new)
       )
     else
-      ActionView::Template.register_template_handler("compiled.#{ORIGINAL_EXTENSION}".to_sym, TEMPLATE_ENGINE.send(:new))
+      ActionView::Template.register_template_handler("compiled.#{original_extension}".to_sym, template_engine.send(:new))
     end
   end
 end

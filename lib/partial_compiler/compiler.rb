@@ -28,7 +28,7 @@ module PartialCompiler
     end
 
     def read_each_line line, compiled_file_path
-      if line.include? RENDERING_ENGINE_PARTIAL_FORMAT 
+      if line.include? PartialCompiler.config[:rendering_engine_partial_format] 
         file = PartialReader.new(line, compiled_file_path)
         if file.contents
           locals_line = generate_locals(file.locals, line)

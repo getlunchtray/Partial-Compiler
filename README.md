@@ -93,7 +93,7 @@ At the moment, when locals are inserted into the compiled template, they're adde
 </div>
 ```
 
-So now both you H1 and paragraph will both say "Goodbye"! 
+So now both your H1 and paragraph will both say "Goodbye"! 
 
 ![](readme-files/totally-justified-full-house-meme.jpg)
 
@@ -122,8 +122,10 @@ Indentation, however, will be honoured.
 ## Work in Progress
 More things coming...
 
-1. Better locals support
-2. Haml support
-3. Slim Support
+
+1. Tests, tests, tests, and more tests
+2. Better locals support
+3. Haml support
+4. Slim Support
  
 
