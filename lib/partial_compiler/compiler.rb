@@ -19,30 +19,26 @@ module PartialCompiler
       text.each_line do |line|
         compiled_content += read_each_line(line, compiled_file_path)
       end
-      compiled_content.to_s.encode('UTF-8', {
-        :invalid => :replace,
-        :undef   => :replace,
-        :replace => '?'
-      })
+      compiled_content.to_s.force_encoding('UTF-8') 
       File.open(compiled_file_path, "w") {|file| file.puts compiled_content }
     end
 
     def read_each_line line, compiled_file_path
       if line.include? PartialCompiler.config[:rendering_engine_partial_format] 
-        file = PartialReader.new(line, compiled_file_path)
-        if file.contents
-          locals_line = generate_locals(file.locals, line)
-          content_with_locals = [locals_line, file.contents].compact.join("\n")
+        the_partial = PartialReader.new(line, compiled_file_path)
+        if the_partial.contents
+          locals_line = generate_locals(the_partial.locals, line, the_partial.indentation)
+          content_with_locals = [locals_line, the_partial.contents].compact.join("\n")
           return content_with_locals
         end
       end
       line
     end
 
-    def generate_locals locals, original_line
+    def generate_locals locals, original_line, indentation
       if locals
         condensed_locals = locals.map{|local, value| "#{local}=#{get_local_value(local, original_line)}"}.join(";")
-        return "<% #{condensed_locals} %>"
+        return "#{(" " * indentation)}<% #{condensed_locals} %>"
       else
         return nil 
       end

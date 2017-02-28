@@ -3,18 +3,19 @@ require "find"
 
 module PartialCompiler
   class PartialReader
-    attr_accessor :path, :locals, :contents
+    attr_accessor :path, :locals, :contents, :indentation
     
     #  @path: Where the partial file is located
     #  @locals: The locals set in the uncompiled file
     #  @contents: The actual guts of the partial which will be placed in the compiled file
+    #  @indentation: The indentation on the line where 'render partial' is called
 
     def initialize original_string, file_called_from 
       code_to_eval = original_string.match(PartialCompiler.config[:regex_partial_eval_match])[1]
       path_to_partial, partial_name, @locals = execute_safe_ruby(code_to_eval)
       set_path(path_to_partial, partial_name, file_called_from)
-      indentation = get_indentation(original_string)
-      set_contents(indentation)
+      get_indentation(original_string)
+      set_contents(@indentation)
     end
 
     private
@@ -42,7 +43,7 @@ module PartialCompiler
     end
 
     def get_indentation original_string
-      original_string[/\A */].size
+      @indentation = original_string[/\A */].size
     end
 
     def set_contents indentation
@@ -62,7 +63,7 @@ module PartialCompiler
     def find_file_in_path file_name, path_to_search
       Find.find(path_to_search) do |path|
         return path if path =~ /_(#{file_name})/
-      end
+      end rescue nil
     end
 
   end

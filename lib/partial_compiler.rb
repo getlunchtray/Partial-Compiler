@@ -1,12 +1,12 @@
 module PartialCompiler
   require 'partial_compiler/railtie' if defined?(Rails)
-
   @config = {
     template_engine: ActionView::Template::Handlers::ERB,
     original_extension: "html.erb",
     rendering_engine_partial_format: "= render partial:",
     # This code would be the code that's executing inside your template, e.g. `render partial: 'my_partial'`
-    regex_partial_eval_match: /(render .*)%>/
+    regex_partial_eval_match: /(render .*)%>/,
+    run_compiled: !Rails.env.development? 
   }
 
   @valid_config_keys = @config.keys

@@ -1,3 +1,4 @@
+#:nocov:
 require 'rails'
 
 module PartialCompiler 
@@ -9,3 +10,4 @@ module PartialCompiler
     end
   end  
 end
+#:nocov:
