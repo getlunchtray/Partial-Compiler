@@ -5,6 +5,19 @@ Partial Compiler allows you to execute your code in a single template file in pr
 
 ## How?
 
+Create an initializer file:
+
+`config/initializers/partial_compiler.rb`
+
+```
+# Optional config
+PartialCompiler.configure({
+ 
+})
+
+PartialCompiler.start
+```
+
 Given a file like:
 
 `index.uc.html.erb` *Notice the 'uc' before 'html'*
