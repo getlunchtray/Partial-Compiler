@@ -1,5 +1,5 @@
 EXPECTED_FILE_CONTENTS = {
-  multiple: "<div>\n  Hello from file one\n</div>\n\n<div>\n  Hello from file two\n</div>",
+  #multiple: "<div>\n  Hello from file one\n</div>\n\n<div>\n  Hello from file two\n</div>",
   contains_bad_file_path: "<%= render partial: \"i_dont_exist\" %>",
   different_file: "I'm in a different directory",
   indentation: "<h1> Welcome to my indented page! </h1> \n\n<div class=\"container\">\n  Don't indent me, bro\n    Keep me indented\n  <div>\n    Help! I'm stuck in this pointless div!\n  </div>\n</div>",
