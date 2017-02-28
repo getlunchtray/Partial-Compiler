@@ -1,11 +1,13 @@
 [![Build Status](https://travis-ci.org/getlunchtray/partial-compiler.svg?branch=master)](https://travis-ci.org/getlunchtray/partial-compiler)
 
 # Partial Compiler
-*Still a work in progress, cooler name to be created later*
+*This is very beta right now, not suggested for production projects at the moment*
 
 Partial Compiler allows you to execute your code in a single template file in production environments.
 
-## How?
+## Setup
+
+**Initializer**
 
 Create an initializer file:
 
@@ -34,9 +36,19 @@ Default Configuration:
 
 `run_compiled` is likely going to be the only thing you'll want to change. This just tells PC when to use the `.compiled` file and when to use the `.uc` file.
 
+**File Names**
+
+To get PC to recognize your files, you'll need to change the extensions. 
+
+`index.html.erb` will need to become `index.uc.html.erb` *Notice the 'uc' before 'html'* Don't create a copy, simply change the file extension.
+
+This only needs to be done for files you want to compile. **Do not change the extension of your partials**
+
+## How does it work?
+
 Given a file like:
 
-`index.uc.html.erb` *Notice the 'uc' before 'html'*
+`index.uc.html.erb` 
 
 Partial Compiler will find all of the partials in said file, extract the code, and create a new file:
 
@@ -148,12 +160,10 @@ Do this:
 
 Indentation, however, will be honoured.
 
-## Work in Progress
-More things coming...
+## To Do
 
-
-1. Tests, tests, tests, and more tests
-2. Better locals support
+1. Refactor compiler.rb file
+2. Allow locals and template variables to share the same name
 3. Haml support
 4. Slim Support
  
