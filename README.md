@@ -18,6 +18,20 @@ PartialCompiler.configure({
 PartialCompiler.start
 ```
 
+Default Configuration:
+
+```
+ {
+    template_engine: ActionView::Template::Handlers::ERB,
+    original_extension: "html.erb",
+    rendering_engine_partial_format: "= render partial:",
+    regex_partial_eval_match: /(render .*)%>/,
+    run_compiled: !Rails.env.development?
+ }
+```
+
+`run_compiled` is likely going to be the only thing you'll want to change. This just tells PC when to use the `.compiled` file and when to use the `.uc` file.
+
 Given a file like:
 
 `index.uc.html.erb` *Notice the 'uc' before 'html'*
