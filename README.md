@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/getlunchtray/partial-compiler.svg?branch=master)](https://travis-ci.org/getlunchtray/partial-compiler)
+
 # Partial Compiler
 *Still a work in progress, cooler name to be created later*
 
