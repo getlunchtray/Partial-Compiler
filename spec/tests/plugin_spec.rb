@@ -4,6 +4,8 @@ module PartialCompiler
   describe Compiler do
     context "development" do
       it "registers uncompiled handlers" do
+        PartialCompiler.configure({run_compiled: false})
+        PartialCompiler.start
         expected_handlers = ["uncompiled.html.erb", "uc.html.erb"]
         current_handlers = ActionView::Template.template_handler_extensions
         expect(expected_handlers & current_handlers).to match_array(expected_handlers) 
