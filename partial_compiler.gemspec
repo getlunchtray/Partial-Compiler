@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = PartialCompiler::VERSION
   s.authors     = ["Noah Kochanowicz"]
   s.email       = ["noah@getlunchtray.com"]
-  s.homepage    = "https://getlunchtray.com/"
+  s.homepage    = "https://github.com/getlunchtray/partial-compiler"
   s.summary     = "Compiles partials in production for faster load times."
   s.description = ""
   s.license     = "MIT"
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency "rails", "~> 4.2.6"
+  s.add_dependency "rails", ">= 4.1.8"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "pry"
