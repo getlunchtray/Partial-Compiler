@@ -21,8 +21,5 @@ module PartialCompiler
     end
   end
 
-  def self.start
-    Plugin.new
-  end
 end
 

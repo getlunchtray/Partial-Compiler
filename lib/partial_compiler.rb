@@ -1,5 +1,6 @@
 module PartialCompiler
   require 'partial_compiler/railtie' if defined?(Rails)
+
   @config = {
     template_engine: "ERB",
     original_extension: "html.erb",
@@ -17,6 +18,10 @@ module PartialCompiler
 
   def self.config
     @config
+  end
+
+  def self.start
+    Plugin.new
   end
 end
 

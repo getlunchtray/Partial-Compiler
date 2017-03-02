@@ -7,6 +7,8 @@ Partial Compiler allows you to execute your code in a single template file in pr
 
 ## Setup
 
+`gem 'partial_compiler'`
+
 **Initializer**
 
 Create an initializer file:
@@ -19,14 +21,14 @@ PartialCompiler.configure({
  
 })
 
-PartialCompiler.start
+PartialCompiler.start # Required
 ```
 
 Default Configuration:
 
 ```
  {
-    template_engine: ActionView::Template::Handlers::ERB,
+    template_engine: "ERB",
     original_extension: "html.erb",
     rendering_engine_partial_format: "= render partial:",
     regex_partial_eval_match: /(render .*)%>/,
@@ -43,6 +45,14 @@ To get PC to recognize your files, you'll need to change the extensions.
 `index.html.erb` will need to become `index.uc.html.erb` *Notice the 'uc' before 'html'* Don't create a copy, simply change the file extension.
 
 This only needs to be done for files you want to compile. **Do not change the extension of your partials**
+
+**Using with Haml**
+
+*TL;DR For now, don't do it.*
+
+After testing this in a production application using Haml, this gem will actually slow down your load times when compiled. I'm not 100% sure why. I am looking into this since LunchTray does use a lot of partials and Haml. 
+
+For PC, locals are currently only set up to work with ERB, meaning everytime you run the compiler you'll need to convert from ERB to Haml. Icky. 
 
 ## How does it work?
 
@@ -101,6 +111,10 @@ Partial Compiler will turn this into:
 
 ## Gotchas
 
+#### Variables & Methods 
+
+Because of the way we pluck the information from partials, you cannot directly pass a variable or method as a local *unless* it's an instance variable.
+
 #### Locals
 
 For locals, the keys cannot share a name with variables in the template. Let me explain:
@@ -134,7 +148,7 @@ At the moment, when locals are inserted into the compiled template, they're adde
 </div>
 ```
 
-So now both your H1 and paragraph will both say "Goodbye"! 
+So now both your H1 and paragraph will say "Goodbye"! 
 
 ![](readme-files/totally-justified-full-house-meme.jpg)
 
