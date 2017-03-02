@@ -1,7 +1,7 @@
 module PartialCompiler
   require 'partial_compiler/railtie' if defined?(Rails)
   @config = {
-    template_engine: ActionView::Template::Handlers::ERB,
+    template_engine: "ERB",
     original_extension: "html.erb",
     rendering_engine_partial_format: "= render partial:",
     # This code would be the code that's executing inside your template, e.g. `render partial: 'my_partial'`
