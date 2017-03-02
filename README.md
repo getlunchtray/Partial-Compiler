@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/getlunchtray/partial-compiler.svg?branch=master)](https://travis-ci.org/getlunchtray/partial-compiler)
+[![Build Status](https://travis-ci.org/getlunchtray/partial-compiler.svg?branch=master)](https://travis-ci.org/getlunchtray/partial-compiler) [![Gem Version](https://badge.fury.io/rb/partial_compiler.svg)](https://badge.fury.io/rb/partial_compiler)
 
 # Partial Compiler
 *This is very beta right now, not suggested for production projects at the moment*
